@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import {motion} from 'framer-motion'
 import { Link } from 'react-router-dom'
 
@@ -32,6 +32,8 @@ const wishlistVariant = {
 }
 
 export default function ArrivalItem(props) {
+    const [inCart, setInCart] = useState(false);
+
     let detailsName = props.data.name;
     let correctedName = detailsName.replace(/\s/g, "-").toLowerCase();
     return (
@@ -42,7 +44,7 @@ export default function ArrivalItem(props) {
                             <i className="far fa-heart"></i>
                         </motion.button>
                         <motion.div variants={btnsCntVariant} initial="hidden" className="arrival-btns-cnt">
-                            <button className="arrival-btn">Add to cart</button>
+                            <button onClick={() => setInCart(!inCart)} className="arrival-btn" disabled={inCart ? true : false}>{inCart ? "In cart": "Add to cart"}</button>
                             <Link to={`/details/${correctedName}`}>
                                 <button className="arrival-btn">Details</button>
                             </Link>

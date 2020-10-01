@@ -1,5 +1,7 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import { motion } from 'framer-motion'
+import { GlobalContext } from '../../GlobalState'
+import TrendingItem from './TrendingItem'
 
 const cntVariant = {
     hidden: {
@@ -31,6 +33,8 @@ const btnVariant = {
 
 export default function Trending() {
     const [color, setColor] = useState(false);
+    const [isMobileSize, setIsMobileSize, products, setProducts] = useContext(GlobalContext);
+    const trendingItems = products.filter(product => product.trending === true);
 
     return (
         <section className="trending">
@@ -38,61 +42,13 @@ export default function Trending() {
                 <h2 className="section-title">Trending</h2>
                 <div className="row flex-row">
                     <div className="col-cnt">
-                        <motion.div variants={trendingVariant} whileHover="hover" initial="hidden" className="trending-l">
-                            <div className="tredning-info" >
-                                <h1 className="trending-title">Oversized hoodie</h1>
-                                <h4 className="trending-price">$19.99</h4>
-                                <motion.button variants={btnVariant} onClick={() => setColor(!color)}className="trending-wishlist-btn">
-                                    <i style={{color: `${color ? "#FFC2CE" : "white" }`}} className="far fa-heart "></i>
-                                </motion.button>
-                                <motion.div variants={cntVariant} className="trending-btns-cnt">
-                                    <button className="trending-btn">Add to cart</button>
-                                    <button className="trending-btn">Details</button>
-                                </motion.div>
-                            </div>
-                        </motion.div>
+                        <TrendingItem data={trendingItems[0]}/>
                     </div>
                     <div className="col-cnt">
-                        <motion.div variants={trendingVariant} whileHover="hover" initial="hidden" className="trending-m">
-                            <div className="tredning-info" >
-                                <h1 className="trending-title">Beige shirt</h1>
-                                <h4 className="trending-price">$24.99</h4>
-                                <motion.button  variants={btnVariant} className="trending-wishlist-btn">
-                                    <i className="far fa-heart "></i>
-                                </motion.button>
-                                <motion.div variants={cntVariant} className="trending-btns-cnt">
-                                    <button className="trending-btn">Add to cart</button>
-                                    <button className="trending-btn">Details</button>
-                                </motion.div>
-                            </div>
-                        </motion.div>
+                        <TrendingItem data={trendingItems[1]}/>
                         <div className="sm-cnt">
-                            <motion.div variants={trendingVariant} whileHover="hover" initial="hidden" className="trending-sm banner-3">
-                            <div className="tredning-info" >
-                                <h1 className="trending-title">Flowers Coat</h1>
-                                <h4 className="trending-price">$35.99</h4>
-                                <motion.button  variants={btnVariant} className="trending-wishlist-btn">
-                                    <i className="far fa-heart "></i>
-                                </motion.button>
-                                <motion.div variants={cntVariant} className="trending-btns-cnt">
-                                    <button className="trending-btn">Add to cart</button>
-                                    <button className="trending-btn">Details</button>
-                                </motion.div>
-                            </div>
-                            </motion.div>
-                            <motion.div variants={trendingVariant} whileHover="hover" initial="hidden" className="trending-sm banner-4">
-                                <div className="tredning-info" >
-                                    <h1 className="trending-title">Leather bag</h1>
-                                    <h4 className="trending-price">$19.99</h4>
-                                    <motion.button  variants={btnVariant} className="trending-wishlist-btn">
-                                    <i className="far fa-heart "></i>
-                                    </motion.button>
-                                    <motion.div variants={cntVariant} className="trending-btns-cnt">
-                                        <button className="trending-btn">Add to cart</button>
-                                        <button className="trending-btn">Details</button>
-                                    </motion.div>
-                                </div>
-                            </motion.div>
+                            <TrendingItem data={trendingItems[2]}/>
+                            <TrendingItem data={trendingItems[3]}/>
                         </div>
                     </div>
                 </div>

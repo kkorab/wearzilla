@@ -1,5 +1,6 @@
 import React from 'react'
 import { motion } from 'framer-motion'
+import { Link } from 'react-router-dom'
 
 const opacityVariant = {
     hidden: {
@@ -73,9 +74,12 @@ export default function Hero() {
                     <motion.h1
                     variants={opacityVariant}
                     className="intro-headline">new lookbook</motion.h1>
-                    <motion.button
-                    variants={btnVariant} 
-                    className="intro-btn">Discover more</motion.button>
+                    <Link to="/catalog">
+                        <motion.button
+                        variants={btnVariant} 
+                        className="intro-btn">Discover more
+                        </motion.button>
+                    </Link>
                     <h3 className="outro-text">clothes store</h3>
                 </motion.div>
             </div>

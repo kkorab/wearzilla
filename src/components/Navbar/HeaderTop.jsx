@@ -9,7 +9,7 @@ export default function HeaderTop() {
     return (
         <header className="header-top">
             <div className="container flex-header">
-                <SearchBox/>
+                {window.innerWidth > 800 ? <SearchBox/> : null}
                 <LogoBox/>
                 <IconsBox/>
             </div>

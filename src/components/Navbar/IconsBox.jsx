@@ -1,9 +1,13 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState} from 'react'
 import { Link } from 'react-router-dom'
 import {GlobalContext} from '../../GlobalState'; 
+import SearchBox from './SearchBox';
 
 export default function IconsBox() {
     const [isLogged, setIsLogged] = useContext(GlobalContext);
+    const [isMobileSize] = useContext(GlobalContext);
+
+
     return (
         <div className="icons-box">
             <Link to="/wishlist">
@@ -22,6 +26,7 @@ export default function IconsBox() {
                 <i className="far fa-user"></i>
                 <h6>{isLogged ? "Log Out" : "Log In"}</h6>
             </div>
+            {isMobileSize ? <SearchBox/> : null}
         </div>
     )
 }

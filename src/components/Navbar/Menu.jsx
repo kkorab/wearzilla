@@ -17,11 +17,6 @@ const menuData = [
         page: 'sale',
         url: "/sale"
     },
-    {
-        id: "menu-item-4",
-        page: 'contact',
-        url: "/contact"
-    },
 ]
 
 export default function Menu() {
