@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion'
-import React from 'react'
+import React, { useContext } from 'react'
+import { GlobalContext } from '../GlobalState'
 import imageDetail from '../images/clothes/arrival/arrival-1.jpg'
 
 
@@ -25,6 +26,11 @@ const containerVariants = {
 }
 
 export default function Details() {
+    const {detailsContext, productsContext} = useContext(GlobalContext);
+    const [products, setProducts] = productsContext;
+    const [detailsProduct, setDetailsProduct] = detailsContext;
+    const {id, url, name, info, price} = (detailsProduct || products[0])
+    ;
     return (
         <motion.section
         variants={containerVariants}
@@ -32,13 +38,14 @@ export default function Details() {
         animate="visible"
         exit="exit" 
         className="details">
+            <div className="wishlist-space cart-space"></div>
             <div className="container details-flex">
                 <div className="details-photo">
-                    <img className="details-img" src={imageDetail} alt="detail img"/>
+                    <img className="details-img" src={url} alt="detail img"/>
                 </div>
                 <div className="details-content">
                     <div className="details-top">
-                        <h1 className="details-title">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</h1>
+                    <h1 className="details-title">{name}</h1>
                         <div className="stars-reviews">
                             <div className="stars">
                                 <i className="fas fa-star"></i>
@@ -52,10 +59,10 @@ export default function Details() {
                             </div>
                         </div>
                         <h4 className="details-price">
-                            $84.90
+                            ${price}
                         </h4>
                     </div>
-                    <p className="details-product-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum quas est magni sint inventore ullam esse adipisci vel modi incidunt earum expedita ex eligendi qui aut alias numquam aliquam accusantium, sequi facilis. Labore suscipit excepturi dignissimos, odit animi debitis assumenda eius! Placeat impedit nisi voluptates officia est expedita, beatae maiores!</p>
+                    <p className="details-product-desc">{info}</p>
                     <div className="details-options-cnt">
                         <div className="details-size">
                                 <select defaultValue="choose size" className="select-size">
@@ -74,8 +81,10 @@ export default function Details() {
                         </div>
                     </div>
                     <div className="details-add-cart">
-                        <button className="details-btn">Add to Cart</button>
-                        <button className="details-btn"><i className="far fa-heart"></i> Add to Wishlist</button>
+                        <button className="details-btn"> <i class="fas fa-cart-plus"></i>
+                        <span className="to-hide">Add to Cart</span></button>
+                        <button className="details-btn"><i className="far fa-heart"></i>
+                        <span className="to-hide">Add to Wishlist</span></button>
                     </div>
 
                 </div>

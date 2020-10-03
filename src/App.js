@@ -13,6 +13,8 @@ import LoginModal from './components/LoginModal';
 import Details from './pages/Details';
 import Footer from './components/Footer/Footer';
 import { AnimatePresence } from 'framer-motion';
+import AddCartModal from './components/AddCartModal';
+import AddWishlistModal from './components/AddWishlistModal';
 
 function App() {
   const location = useLocation();
@@ -26,7 +28,9 @@ function App() {
       <GlobalContextProvider>
         <Modal/>
         <LoginModal/>
-        <Header/>
+        <AddCartModal/>
+        <AddWishlistModal/>
+        <Header location={location}/>
         <AnimatePresence exitBeforeEnter>
           <Switch location={location} key={location.key}>
             <Route path="/" exact component={Home}/>

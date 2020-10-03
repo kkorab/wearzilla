@@ -1,8 +1,8 @@
 import { motion } from 'framer-motion'
-import React from 'react'
-import CartHeader from '../components/Cart/CartHeader'
-import CartProduct from '../components/Cart/CartProduct'
+import React, { useContext } from 'react'
+import CartProducts from '../components/Cart/CartProducts'
 import CartTotal from '../components/Cart/CartTotal'
+import { GlobalContext } from '../GlobalState'
 
 
 const containerVariants = {
@@ -29,7 +29,8 @@ const cartVariants = {
         y: 0,
         transition: {
             duration: 0.6,
-            delay: 1
+            delay: 1,
+            staggerChildren: 0.1
         }
     },
     exit: {
@@ -39,29 +40,36 @@ const cartVariants = {
 }
 
 export default function Cart() {
-    return (
-        <motion.section
-        variants={containerVariants}
-        initial="hidden"
-        animate="visible"
-        exit="exit"  
-        className="cart-section">
-            <div className="cart-space"></div>
-            <div className="container cart-flex">
-                <div className="cart-banner">
-                    <h1 className="cart-headline">shopping cart</h1>
-                </div>
-                <motion.div
-                variants={cartVariants}
-                className="shopping-cart">
-                    <div className="shopping-cart-content">
-                        <CartHeader/>
-                        <CartProduct/>
-                    </div>
-                    <CartTotal/>
-                </motion.div>
-            </div>
+    const {cartContext} = useContext(GlobalContext);
+    const [cart] = cartContext;
 
-        </motion.section>
+    return (
+        <>
+            <motion.section
+            variants={containerVariants}
+            initial="hidden"
+            animate="visible"
+            exit="exit"  
+            className="cart-section">
+                <div className="cart-space"></div>
+                <div className="container cart-flex">
+                    <div className="cart-banner">
+                        <h1 className="cart-headline">shopping cart</h1>
+                    </div>
+                    {cart.length ? (<motion.div
+                    variants={cartVariants}
+                    className="shopping-cart">
+                        <motion.div variants={cartVariants} className="shopping-cart-content">
+                            <CartProducts/>
+                        </motion.div>
+                    </motion.div>) : (
+                        <div className="cart-banner">
+                            <h1 className="cart-headline">Your cart is empty</h1>
+                        </div>
+                    ) }
+                </div>
+            </motion.section>
+            <CartTotal/>
+        </>
     )
 }

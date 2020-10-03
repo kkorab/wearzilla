@@ -1,11 +1,12 @@
-import React, {useState, useEffect, useContext} from 'react';
+import React, {useState, useContext} from 'react';
 import {Link} from 'react-router-dom';
 import { GlobalContext } from '../../GlobalState';
 import Menu from './Menu';
 
 export default function HeaderBottom() {
     const [isOpen, setIsOpen] = useState(true);
-    const [isMobileSize] = useContext(GlobalContext);
+    const {mobileContext} = useContext(GlobalContext);
+    const [isMobileSize, setisMobileSize] = mobileContext;
 
 
     const hamburger = (

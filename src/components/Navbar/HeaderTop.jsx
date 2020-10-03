@@ -1,15 +1,32 @@
-import React, {useContext} from 'react'
+import React, { useState, useEffect } from 'react'
 import IconsBox from './IconsBox'
 import LogoBox from './LogoBox'
 import SearchBox from './SearchBox'
-import {GlobalContext} from '../../GlobalState';
 
-export default function HeaderTop() {
-    const [isLogged, setIsLogged]= useContext(GlobalContext);
+
+export default function HeaderTop() {   
+    const [isMobile, setIsMobile] = useState(false);
+
+
+    const handleSize = () => {
+        if(window.innerWidth < 800) {
+            setIsMobile(true)
+        }
+        else {
+            setIsMobile(false)
+        }
+    } 
+
+    
+    
+    useEffect(() => {
+        handleSize();
+        window.addEventListener('resize', handleSize)
+    }, [isMobile]);
     return (
         <header className="header-top">
             <div className="container flex-header">
-                {window.innerWidth > 800 ? <SearchBox/> : null}
+                {isMobile ? null : <SearchBox/>}
                 <LogoBox/>
                 <IconsBox/>
             </div>

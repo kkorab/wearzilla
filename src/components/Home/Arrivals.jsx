@@ -1,10 +1,11 @@
 import React, {useContext} from 'react';
-import ArrivalItem from './ArrivalItem';
 import { Link } from 'react-router-dom';
 import { GlobalContext } from '../../GlobalState';
+import Product from '../Product';
 
 export default function Arrivals() {
-    const [isMobileSize, setIsMobileSize, products, setProducts] = useContext(GlobalContext);
+    const {productsContext} = useContext(GlobalContext);
+    const [products, setProducts] = productsContext;
     const dataArrivals = products.filter(product => product.arrival === true);
     return (
         <div className="arrivals">
@@ -12,7 +13,7 @@ export default function Arrivals() {
                 <h2 className="section-title">Recent arrivals</h2>
                 <div className="arrivals-cnt">
                     {dataArrivals.map(item => {
-                        return <ArrivalItem key={item.id} data={item}/>
+                        return <Product key={item.id} data={item}/>
                     })}
                 </div>
                 <h2 className="section-title">

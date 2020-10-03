@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react'
 import {AnimatePresence, motion} from 'framer-motion';
-import {GlobalContext} from "../GlobalState";
 import shoesImg from '../images/shoes.jpg';
 
 const backdrop = {
@@ -40,8 +39,6 @@ export default function Modal() {
 //             document.body.style.overflow = "hidden";
 //         }, 8000)
 //    }, [])
-    
-            
 
     return (
         <AnimatePresence>

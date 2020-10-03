@@ -42,8 +42,6 @@ const cntVariant = {
     }
 }
 
-
-
 export default function MainHero(props) {
     return (
         <div className={props.cName}>

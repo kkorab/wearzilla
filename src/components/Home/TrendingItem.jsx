@@ -1,5 +1,6 @@
+import { GlobalContext } from '../../GlobalState'
 import { motion } from 'framer-motion'
-import React, { useState} from 'react'
+import React, { useContext} from 'react'
 import { Link } from 'react-router-dom'
 
 const cntVariant = {
@@ -31,9 +32,10 @@ const trendingVariant = {
 }
 
 export default function TrendingItem(props) {
-    const [color, setColor] = useState(false);
-    const [inCart, setInCart] = useState(false);
-    const {price, cName, name, url} = props.data;
+    const {functionsContext} = useContext(GlobalContext);
+    const [, handleDetails, addToCart, , , ,, addToWishlist, removeFromWishlist] = functionsContext;
+    const {id, url, name, price, cName, inCart, inWishlist} = props.data;
+
     let detailsName = props.data.name;
     let correctedName = detailsName.replace(/\s/g, "-").toLowerCase();
 
@@ -42,13 +44,16 @@ export default function TrendingItem(props) {
             <div className="tredning-info" >
                 <h1 className="trending-title">{name}</h1>
                 <h4 className="trending-price">${price}</h4>
-                <motion.button variants={btnVariant} onClick={() => setColor(!color)}className="trending-wishlist-btn">
-                    <i style={{color: `${color ? "#FFC2CE" : "white" }`}} className="far fa-heart "></i>
+                <motion.button variants={btnVariant} onClick={inWishlist ? () => removeFromWishlist(id) : () => addToWishlist(id)}className="trending-wishlist-btn">
+                    <i style={inWishlist ? {color: '#FF9985'} : null} className="far fa-heart"></i>
                 </motion.button>
                 <motion.div variants={cntVariant} className="trending-btns-cnt">
-                    <button onClick={() => {setInCart(!inCart)}} className="trending-btn" disabled={inCart ? true : false}>{inCart ? "in cart" : "add to cart"}</button>
+                    <button onClick={() => {
+                addToCart(id)}} className="trending-btn" disabled={inCart ? true : false}>{inCart ? "in cart" : "add to cart"}</button>
                     <Link to={`/details/${correctedName}`}>
-                        <button className="trending-btn">Details</button>
+                        <button 
+                        onClick={() => handleDetails(id)}
+                        className="trending-btn">Details</button>
                     </Link>
                 </motion.div>
             </div>

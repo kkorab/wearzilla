@@ -1,11 +1,13 @@
-import React, { useContext, useState} from 'react'
+import React, { useContext } from 'react'
 import { Link } from 'react-router-dom'
 import {GlobalContext} from '../../GlobalState'; 
 import SearchBox from './SearchBox';
 
 export default function IconsBox() {
-    const [isLogged, setIsLogged] = useContext(GlobalContext);
-    const [isMobileSize] = useContext(GlobalContext);
+    const isLogged = true;
+    const {mobileContext, functionsContext} = useContext(GlobalContext);
+    const [isMobileSize] = mobileContext;
+    const [getItem, handleDetails, addToCart, increment, decrement, removeItem, addTotals, addToWishlist, removeFromWishlist] = functionsContext;
 
 
     return (
@@ -19,7 +21,7 @@ export default function IconsBox() {
             <Link to="/cart">
                 <div className="cart">
                     <i className="fas fa-shopping-cart"></i>
-                    <h6>$0,00</h6>
+                    <h6>${addTotals()}</h6>
                 </div>
             </Link>
             <div className="sign-in">
