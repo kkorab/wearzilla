@@ -1,4 +1,4 @@
-import React, {useContext} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import {GlobalContext} from '../../GlobalState';
 import Product from '../Product';
 import CatalogCategories from './CatalogCategories';
@@ -6,19 +6,39 @@ import CatalogCategories from './CatalogCategories';
 export default function CatalogProducts() {
     const {productsContext} = useContext(GlobalContext);
     const [products, setProducts] = productsContext;
+    const [phrase, setPhrase] = useState("");
+    const [filtered, setFiltered] = useState(products)
     const prices = products.map(product => product.price);
     const maxPrice = Math.max(...prices);
 
+    function filterItems(text) {
+        const correctedText = text.toLowerCase();
+        const newFiltered = products.filter(product => product.name.includes(correctedText))
+        if (newFiltered.length === 0) {
+            return [];
+        }
+        else {
+            return newFiltered
+        }
+    }
+
+    useEffect(() => {
+        setFiltered(filterItems(phrase))
+    }, [phrase])
+
     return (
         <section className="catalog-products">
-            <div className="container">
+            <div className="container cnt-catalog">
                 <h2 className="section-title">Products</h2>
                 <div className="catalog-cnt">
                     <div className="catalog-filters">
                         <div className="filters">
-                            <input className="filters__search-input" type="text" placeholder="Search..."/>
+                            <input
+                            onInput={(e) => {
+                            setPhrase(e.target.value)}}
+                             className="filters__search-input" type="text" placeholder="Search..."/>
                             <form className="categories-filters">
-                                <CatalogCategories/>
+                                <CatalogCategories />
                             </form>
                             <div className="range-cnt">
                                 <span>0</span>
@@ -28,9 +48,9 @@ export default function CatalogProducts() {
                         </div>
                     </div>
                     <div className="catalog-items">
-                        {products.map(product => {
-                           return <Product key={product.id} data={product}/>
-                        })}
+                        {filtered.length ? filtered.map(product => {
+                           return <Product key={product.id} data={product} />
+                        }) : <h1 className="no-matches">No matches - type other phrase</h1>}
                     </div>
                 </div>
             </div>

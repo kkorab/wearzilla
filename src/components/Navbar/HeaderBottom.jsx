@@ -1,28 +1,20 @@
-import React, {useState, useContext} from 'react';
+import React, {useContext} from 'react';
 import {Link} from 'react-router-dom';
 import { GlobalContext } from '../../GlobalState';
 import Menu from './Menu';
 
 export default function HeaderBottom() {
-    const [isOpen, setIsOpen] = useState(true);
     const {mobileContext} = useContext(GlobalContext);
-    const [isMobileSize, setisMobileSize] = mobileContext;
+    const [isMobileSize] = mobileContext;
 
-
-    const hamburger = (
-        <div onClick={() => setIsOpen(!isOpen)} className="hamburger-menu">
-            <i className={`fas ${isOpen ? "fa-times" : "fa-bars"}`}></i>
-        </div>
-    )
     return (
         <nav className="nav">
             <div className="container flex-nav"> 
-                {isMobileSize ? hamburger : <Menu/>}  
+                {isMobileSize ? null : <Menu/>}  
                 <div className="sale-nav">
                 <Link to="/sale"><h5><span className="sale-alert"> *Sale* </span>up to <span className="sale-alert">50%</span> off</h5></Link>
                 </div>
             </div>
-            
         </nav>
     )
 }

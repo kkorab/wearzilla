@@ -1,7 +1,6 @@
 import { motion } from 'framer-motion'
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import { GlobalContext } from '../GlobalState'
-import imageDetail from '../images/clothes/arrival/arrival-1.jpg'
 
 
 const containerVariants = {
@@ -26,11 +25,50 @@ const containerVariants = {
 }
 
 export default function Details() {
-    const {detailsContext, productsContext} = useContext(GlobalContext);
+    const {detailsContext, productsContext, functionsContext, cartContext, showAddedItemModal, sizeContext} = useContext(GlobalContext);
+    const [cart, setCart] = cartContext;
     const [products, setProducts] = productsContext;
-    const [detailsProduct, setDetailsProduct] = detailsContext;
-    const {id, url, name, info, price} = (detailsProduct || products[0])
-    ;
+    const [detailsProduct] = detailsContext;
+    const {id, category, name, info, price, priceBefore, url, arrival, sale, trending, inWishlist, inCart, quantity, total, size} = (detailsProduct || products[0]);
+    const [getItem, handleDetails, addToCart, increment, decrement, removeItem, addTotals, addToWishlist, removeFromWishlist, clearCart] = functionsContext;
+    const [showAddModal, setShowAddModal] = showAddedItemModal;
+
+    const [whatSize, setWhatSize] = sizeContext;
+    // details 
+    const [quant, setQuant] = useState(1);
+
+
+    function getSize(e) {
+        setWhatSize(e.target.value)
+    }
+
+    function addToCartDetailsItem() {
+        let tempProducts = [...products];
+        const index = products.indexOf(getItem(id))
+        const item = tempProducts[index];
+        item.inCart = true;
+        item.quantity = quant;
+        const price = item.price;
+        item.total = quant * price;
+        item.size = whatSize;
+
+        setCart([...cart, item]);
+        setProducts(tempProducts);
+    }
+
+    function decrementDetails() {
+        if (quant < 2) {
+            return
+        }
+        else {
+            setQuant(quant -1);
+        }
+    }
+
+    function incrementDetails() {
+        setQuant(quant+1)
+    }
+
     return (
         <motion.section
         variants={containerVariants}
@@ -65,7 +103,9 @@ export default function Details() {
                     <p className="details-product-desc">{info}</p>
                     <div className="details-options-cnt">
                         <div className="details-size">
-                                <select defaultValue="choose size" className="select-size">
+                                <select defaultValue="choose size"
+                                onChange={(e) => getSize(e) } 
+                                className="select-size">
                                     <option value="choose size" disabled  hidden>Choose size</option>
                                     <option value="XS">XS</option>
                                     <option value="S">S</option>
@@ -75,16 +115,24 @@ export default function Details() {
                                 </select>
                         </div>
                         <div className="details-qty">
-                            <button className="qty-btn">-</button>
-                            <span className="qty-span">1</span>
-                            <button className="qty-btn">+</button>
+                            <button onClick={() => decrementDetails()} className="qty-btn">-</button>
+                            <span className="qty-span">{quant}</span>
+                            <button onClick={() => incrementDetails()} className="qty-btn">+</button>
                         </div>
                     </div>
                     <div className="details-add-cart">
-                        <button className="details-btn"> <i class="fas fa-cart-plus"></i>
-                        <span className="to-hide">Add to Cart</span></button>
-                        <button className="details-btn"><i className="far fa-heart"></i>
-                        <span className="to-hide">Add to Wishlist</span></button>
+                        <button
+                        onClick={inCart ? null : (id) => addToCartDetailsItem(id)} 
+                        className="details-btn">
+                            {inCart ? null : <i className="fas fa-cart-plus"></i>}
+                            <span className="to-hide">{inCart ? "In cart" : "Add to cart"}</span>
+                        </button>
+                        <button className="details-btn"
+                        onClick={inWishlist ? () => removeFromWishlist(id) : 
+                        () =>  addToWishlist(id)}
+                        >
+                        {inWishlist ? null : <i className="far fa-heart"></i>}
+                        <span className="to-hide">{inWishlist ? "In Wishlist" : "Add to Wishlist"}</span></button>
                     </div>
 
                 </div>

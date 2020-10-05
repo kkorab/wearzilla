@@ -6,6 +6,7 @@ export const GlobalContext = createContext();
 
 export const GlobalContextProvider = (props) => {
     const [showAddModal, setShowAddModal] = useState(false);
+    const [chooseSize, setChooseSize] = useState(false);
     const [showAddModalWishlist, setShowAddModalWishlist] = useState(false);
     const [products, setProducts] = useState(items);
     const [isMobileSize, setIsMobileSize] = useState(false);
@@ -13,7 +14,8 @@ export const GlobalContextProvider = (props) => {
     const [detailsProduct, setDetailsProduct] = useState(null);
     const [cart, setCart] = useState([]);
     const [wishlist, setWishlist] = useState([]);
-    const location = useLocation()
+    const [whatSize, setWhatSize] = useState('');
+    const location = useLocation();
 
     const showModalItemCart = () => {
         setShowAddModal(true);
@@ -34,6 +36,11 @@ export const GlobalContextProvider = (props) => {
         setProducts(tempProducts);
     }
 
+    const showSizeModal = (e) => {
+        
+        console.log('works');
+    }
+
     const getItem = (id) => {
         const chosenItem = products.find(product => product.id === id);
         return chosenItem;
@@ -52,6 +59,9 @@ export const GlobalContextProvider = (props) => {
         item.quantity = 1;
         const price = item.price;
         item.total = price;
+
+        setChooseSize(true);
+        item.size = showSizeModal();
 
         setCart([...cart, item])
         setProducts(tempProducts);
@@ -95,7 +105,7 @@ export const GlobalContextProvider = (props) => {
 
         setCart([...tempCart])
     }
-    
+
     const decrement = (id) => {
         let tempCart = [...cart];
         
@@ -168,9 +178,11 @@ export const GlobalContextProvider = (props) => {
             detailsContext: [detailsProduct, setDetailsProduct],
             functionsContext: [getItem, handleDetails, addToCart, increment, decrement, removeItem, addTotals, addToWishlist, removeFromWishlist, clearCart],
             cartContext: [cart, setCart],
+            sizeContext: [whatSize, setWhatSize],
             wishlistContext: [wishlist, setWishlist],
             showAddedItemModal: [showAddModal, setShowAddModal],
             showAddedItemModalWishlist: [showAddModalWishlist, setShowAddModalWishlist],
+            chooseSizeContext: [chooseSize, setChooseSize],
             location: location
             }}>
             {props.children}    

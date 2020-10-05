@@ -3,6 +3,7 @@ import React, { useContext } from 'react'
 import CartProducts from '../components/Cart/CartProducts'
 import CartTotal from '../components/Cart/CartTotal'
 import { GlobalContext } from '../GlobalState'
+import svgEmpty from '../images/svg/shopping-cart.svg'
 
 
 const containerVariants = {
@@ -63,13 +64,18 @@ export default function Cart() {
                             <CartProducts/>
                         </motion.div>
                     </motion.div>) : (
-                        <div className="cart-banner">
-                            <h1 className="cart-headline">Your cart is empty</h1>
-                        </div>
+                        <>
+                            <div className="cart-banner">
+                                <h1 className="cart-headline">Your cart is empty</h1>
+                            </div>
+                            <div className="svg-flex">
+                                {<img className="svg-empty" src={svgEmpty} alt=""/> }
+                            </div>
+                        </>
                     ) }
                 </div>
             </motion.section>
-            <CartTotal/>
+            {cart.length ? <CartTotal/> : null}
         </>
     )
 }

@@ -38,6 +38,7 @@ export const items = [
         inCart: false,
         quantity: 0,
         total: 0,
+        size: "",
     },
     {
         id: 2,
@@ -53,6 +54,7 @@ export const items = [
         inCart: false,
         quantity: 0,
         total: 0,
+        size: "",
     },
     {
         id: 3,
@@ -68,6 +70,7 @@ export const items = [
         inCart: false,
         quantity: 0,
         total: 0,
+        size: "",
     },
     {
         id: 4,
@@ -83,6 +86,7 @@ export const items = [
         inCart: false,
         quantity: 0,
         total: 0,
+        size: "",
     },
     {
         id: 5,
@@ -98,6 +102,7 @@ export const items = [
         inCart: false,
         quantity: 0,
         total: 0,
+        size: "",
     },
     {
         id: 6,
@@ -113,6 +118,7 @@ export const items = [
         inCart: false,
         quantity: 0,
         total: 0,
+        size: "",
     },
     {
         id: 7,
@@ -128,6 +134,7 @@ export const items = [
         inCart: false,
         quantity: 0,
         total: 0,
+        size: "",
     },
     {
         id: 8,
@@ -143,11 +150,12 @@ export const items = [
         inCart: false,
         quantity: 0,
         total: 0,
+        size: "",
     },
     {
         id: "sale-1",
         category: "Jackets/Coats",
-        name: 'Beige luxury polo shirt',
+        name: 'Brown elegant leather',
         info: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia blanditiis magni illum ullam laboriosam. Eveniet sed, vitae aliquid, et qui earum explicabo facere non, quam nemo excepturi itaque accusamus amet.",
         price: 59.99,
         priceBefore: 79.99, 
@@ -159,6 +167,7 @@ export const items = [
         inCart: false,
         quantity: 0,
         total: 0,
+        size: "",
     },
     {
         id: "sale-2",
@@ -175,6 +184,7 @@ export const items = [
         inCart: false,
         quantity: 0,
         total: 0,
+        size: "",
     },
     {
         id: "sale-3",
@@ -191,6 +201,7 @@ export const items = [
         inCart: false,
         quantity: 0,
         total: 0,
+        size: "",
     },
     {
         id: "sale-4",
@@ -207,6 +218,7 @@ export const items = [
         inCart: false,
         quantity: 0,
         total: 0,
+        size: "",
     },
     {
         id: "sale-5",
@@ -223,6 +235,7 @@ export const items = [
         inCart: false,
         quantity: 0,
         total: 0,
+        size: "",
     },
     {
         id: "sale-6",
@@ -239,6 +252,7 @@ export const items = [
         inCart: false,
         quantity: 0,
         total: 0,
+        size: "",
     },
     {
         id: "sale-7",
@@ -255,6 +269,7 @@ export const items = [
         inCart: false,
         quantity: 0,
         total: 0,
+        size: "",
     },
     {
         id: "sale-8",
@@ -271,6 +286,7 @@ export const items = [
         inCart: false,
         quantity: 0,
         total: 0,
+        size: "",
     },
     {
         id: "trending-1",
@@ -287,6 +303,7 @@ export const items = [
         inCart: false,
         quantity: 0,
         total: 0,
+        size: "",
     },
     {
         id: "trending-2",
@@ -303,7 +320,7 @@ export const items = [
         inCart: false,
         quantity: 0,
         total: 0,
-        
+        size: "",
     },
     {
         id: "trending-3",
@@ -320,6 +337,7 @@ export const items = [
         inCart: false,
         quantity: 0,
         total: 0,
+        size: "",
     },
     {
         id: "trending-4",
@@ -336,5 +354,6 @@ export const items = [
         inCart: false,
         quantity: 0,
         total: 0,
+        size: "",
     },
 ]

@@ -15,6 +15,7 @@ import Footer from './components/Footer/Footer';
 import { AnimatePresence } from 'framer-motion';
 import AddCartModal from './components/AddCartModal';
 import AddWishlistModal from './components/AddWishlistModal';
+import MobileMenu from './components/Navbar/MobileMenu';
 
 function App() {
   const location = useLocation();
@@ -28,6 +29,7 @@ function App() {
       <GlobalContextProvider>
         <Modal/>
         <LoginModal/>
+        <MobileMenu/>
         <AddCartModal/>
         <AddWishlistModal/>
         <Header location={location}/>

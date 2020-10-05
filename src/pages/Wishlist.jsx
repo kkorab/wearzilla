@@ -3,6 +3,8 @@ import React, { useContext } from 'react'
 import WishlistProducts from '../components/Wishlist/WishlistProducts'
 import { GlobalContext } from '../GlobalState'
 
+import list from '../images/svg/list.svg'
+
 const containerVariants = {
     hidden: {
         opacity: 0, 
@@ -58,9 +60,14 @@ export default function Wishlist() {
                         <WishlistProducts/>
                     </motion.div> 
                 ) : (
-                    <div className="cart-banner">
-                        <h1 className="cart-headline">Your wishlist is empty</h1>
-                    </div>
+                    <>
+                        <div className="cart-banner">
+                            <h1 className="cart-headline">Your wishlist is empty</h1>
+                        </div>
+                        <div className="svg-flex">
+                        {<img className="svg-empty" src={list} alt=""/> }
+                        </div>
+                    </>
                 ) }
             </div>
         </motion.section>

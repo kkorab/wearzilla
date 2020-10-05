@@ -1,8 +1,9 @@
 import React, { useContext } from 'react'
+import { useState } from 'react';
 import { GlobalContext } from '../../GlobalState'
 import Category from './Category';
 
-export default function CatalogCategories() {
+export default function CatalogCategories(props) {
     const {productsContext} = useContext(GlobalContext);
     const [products] = productsContext;
     const data = products.map(product => product.category)

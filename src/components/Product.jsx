@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion'
 import React, { useContext, useState } from 'react'
 import { Link } from 'react-router-dom'
+import ChooseSize from '../ChooseSize'
 import { GlobalContext } from '../GlobalState'
 
 const btnsCntVariant = {
@@ -31,48 +32,18 @@ const wishlistVariant = {
     }
 }
 
-const cntVariant = {
-    hidden: {
-        opacity: 0,
-        y: 50
-    },
-    hover: {
-        opacity: 1,
-        y: 0
-    }
-}
-
-const btnVariant = {
-    hidden: {
-        y: -50,
-        opacity: 0
-    },
-    hover: {
-        y: 0,
-        opacity: 1
-    }
-}
-
-const trendingVariant = {
-    hover: {
-        opacity: 1,
-    }
-}
-
 
 export default function Product(props) {
-    const {functionsContext, wishlistContext, cartContext} = useContext(GlobalContext);
-    const [getItem, handleDetails, addToCart, increment, decrement, removeItem,addTotals, addToWishlist, removeFromWishlist] = functionsContext;
-    const [cart, setCart] = cartContext;
-    const [wishlist, setWishlist] = wishlistContext;
+    const {functionsContext} = useContext(GlobalContext);
+    const [, handleDetails, addToCart, , , ,, addToWishlist, removeFromWishlist] = functionsContext;
 
-    const {id, url, category, name, price, priceBefore, trending, cName, sale, inCart, inWishlist} = props.data;
+    const {id, url, category, name, price, priceBefore, sale, inCart, inWishlist} = props.data;
     let detailsName = props.data.name;
     let correctedName = detailsName.replace(/\s/g, "-").toLowerCase();
     return (
         <>
         <div className="arrival-item">
-            <motion.div whileHover="hover" initial={frontVariant} className="arrival-front" style={{backgroundImage: `url(${url})`}}>
+            <motion.div whileHover='hover' initial={frontVariant} className="arrival-front" style={{backgroundImage: `url(${url})`}}>
                 <motion.button variants={wishlistVariant} initial="hidden"
                 onClick={inWishlist ? () => removeFromWishlist(id) : () => addToWishlist(id)}
                 className="trending-wishlist-btn">
@@ -85,6 +56,7 @@ export default function Product(props) {
                     <button onClick={() => handleDetails(id)} className="arrival-btn">Details</button>
                 </Link>     
                 </motion.div>
+                   {/* {chooseSize ? <ChooseSize/> : null}  */}
             </motion.div>
             <div className="arrival-item-desc">
                 <h4 className="arrival-item__category">{category}</h4>

@@ -6,7 +6,7 @@ export default function Header(props) {
     const [fixedHeader, setFixedHeader] = useState();
     
     useEffect(() => {
-        if (props.location.pathname === '/cart' || props.location.pathname === '/wishlist' || props.location.pathname === '/details') {
+        if (props.location.pathname === '/cart' || props.location.pathname === '/wishlist' || props.location.pathname.includes('details')) {
             setFixedHeader(true);
         }
         else {

@@ -1,12 +1,10 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect} from 'react'
 import IconsBox from './IconsBox'
 import LogoBox from './LogoBox'
 import SearchBox from './SearchBox'
 
-
-export default function HeaderTop() {   
+export default function HeaderTop() { 
     const [isMobile, setIsMobile] = useState(false);
-
 
     const handleSize = () => {
         if(window.innerWidth < 800) {
@@ -16,13 +14,12 @@ export default function HeaderTop() {
             setIsMobile(false)
         }
     } 
-
-    
     
     useEffect(() => {
         handleSize();
         window.addEventListener('resize', handleSize)
     }, [isMobile]);
+
     return (
         <header className="header-top">
             <div className="container flex-header">
