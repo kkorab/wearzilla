@@ -1,10 +1,15 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 export default function Category(props) {
-    const category = props.data;
+    const id = props.id;
     return (
-        <label htmlFor={category}>
-            <input name={category} type="checkbox" />{category}
+        <label htmlFor="">
+            <input 
+            type="checkbox"
+            onChange={() => props.handleChange(id)}
+            checked={props.name.checked ? true : false}
+            />
+            {props.name.category}
         </label>
     )
 }

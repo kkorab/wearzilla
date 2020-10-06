@@ -1584,7 +1584,6 @@ label {
   color: var(--brown-color);
 }
 
-
 .choose-size {
   height: 4rem;
   background: rgba(0,0,0,.9);
@@ -1615,6 +1614,10 @@ label {
 .select-size-product option {
   color: black;
   text-align: center;
+}
+
+.product-div {
+  position: relative;
 }
 
 /* MEDIA QUERIES */
@@ -1806,9 +1809,6 @@ label {
     height: 450px;
     object-fit: cover;
   }
-  /* .card-product-desc {
-    padding: 1rem 0;
-  } */
 
   .details-title {
     margin: initial;
