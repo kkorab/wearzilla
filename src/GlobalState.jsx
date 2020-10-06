@@ -14,7 +14,7 @@ export const GlobalContextProvider = (props) => {
     const [detailsProduct, setDetailsProduct] = useState(null);
     const [cart, setCart] = useState([]);
     const [wishlist, setWishlist] = useState([]);
-    const [whatSize, setWhatSize] = useState('');
+    // const [whatSize, setWhatSize] = useState('M');
     const location = useLocation();
 
     const showModalItemCart = () => {
@@ -36,11 +36,6 @@ export const GlobalContextProvider = (props) => {
         setProducts(tempProducts);
     }
 
-    const showSizeModal = (e) => {
-        
-        console.log('works');
-    }
-
     const getItem = (id) => {
         const chosenItem = products.find(product => product.id === id);
         return chosenItem;
@@ -51,7 +46,7 @@ export const GlobalContextProvider = (props) => {
         return setDetailsProduct(item);
     }
 
-    const addToCart = (id) => {
+    const addToCart = (id, size) => {
         let tempProducts = [...products];
         const index = products.indexOf(getItem(id));
         const item = tempProducts[index];
@@ -59,10 +54,9 @@ export const GlobalContextProvider = (props) => {
         item.quantity = 1;
         const price = item.price;
         item.total = price;
+        item.size = size;
 
-        setChooseSize(true);
-        item.size = showSizeModal();
-
+        
         setCart([...cart, item])
         setProducts(tempProducts);
         showModalItemCart();
@@ -178,7 +172,7 @@ export const GlobalContextProvider = (props) => {
             detailsContext: [detailsProduct, setDetailsProduct],
             functionsContext: [getItem, handleDetails, addToCart, increment, decrement, removeItem, addTotals, addToWishlist, removeFromWishlist, clearCart],
             cartContext: [cart, setCart],
-            sizeContext: [whatSize, setWhatSize],
+            // sizeContext: [whatSize, setWhatSize],
             wishlistContext: [wishlist, setWishlist],
             showAddedItemModal: [showAddModal, setShowAddModal],
             showAddedItemModalWishlist: [showAddModalWishlist, setShowAddModalWishlist],

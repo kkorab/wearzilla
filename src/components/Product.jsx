@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion'
-import React, { useContext, useState } from 'react'
+import React, { useContext, useState} from 'react'
 import { Link } from 'react-router-dom'
-import ChooseSize from '../ChooseSize'
+// import ChooseSize from '../ChooseSize'
 import { GlobalContext } from '../GlobalState'
 
 const btnsCntVariant = {
@@ -34,12 +34,25 @@ const wishlistVariant = {
 
 
 export default function Product(props) {
-    const {functionsContext} = useContext(GlobalContext);
-    const [, handleDetails, addToCart, , , ,, addToWishlist, removeFromWishlist] = functionsContext;
-
-    const {id, url, category, name, price, priceBefore, sale, inCart, inWishlist} = props.data;
+    const {functionsContext, chooseSizeContext} = useContext(GlobalContext);
+    const [, handleDetails, addToCart, , , ,, addToWishlist, removeFromWishlist, clearCart, handleSize] = functionsContext;
+    const [chooseSize, setChooseSize] = chooseSizeContext;
+    const [sizeValue, setSizeValue] = useState(null);
+    let {id, url, category, name, price, priceBefore, sale, inCart, inWishlist, size} = props.data;
     let detailsName = props.data.name;
     let correctedName = detailsName.replace(/\s/g, "-").toLowerCase();
+
+    
+
+    const [isSize, setIsSize] = useState(false);
+
+    function getSize(e) {
+        let newSize = e.target.value;
+        size = newSize;
+        setIsSize(false);
+        addToCart(id, size)
+    }
+
     return (
         <>
         <div className="arrival-item">
@@ -51,12 +64,27 @@ export default function Product(props) {
                 </motion.button>
                 <motion.div variants={btnsCntVariant} initial="hidden" className="arrival-btns-cnt">
                 <button onClick={() => {
-                    addToCart(id)}} className="arrival-btn" disabled={inCart ? true : false}>{inCart ? "in cart" : "add to cart"}</button>
+                    setIsSize(true)
+                    size=sizeValue;
+                    }} className="arrival-btn" disabled={inCart ? true : false}>{inCart ? "in cart" : "add to cart"}</button>
                 <Link to={`/details/${correctedName}`}>
                     <button onClick={() => handleDetails(id)} className="arrival-btn">Details</button>
                 </Link>     
                 </motion.div>
-                   {/* {chooseSize ? <ChooseSize/> : null}  */}
+                {isSize ? 
+                    <div className="choose-size">
+                        <select onChange={(e) => getSize(e)} defaultValue="choose size"
+                        className="select-size-product">
+                            <option value="choose size" disabled hidden>Choose size</option>
+                            <option value="XS">XS</option>
+                            <option value="S">S</option>
+                            <option value="M">M</option>
+                            <option value="L">L</option>
+                            <option value="XL">XL</option>
+                        </select>
+                    </div>
+                : null}
+                   
             </motion.div>
             <div className="arrival-item-desc">
                 <h4 className="arrival-item__category">{category}</h4>
