@@ -14,7 +14,7 @@ export const GlobalContextProvider = (props) => {
     const [detailsProduct, setDetailsProduct] = useState(null);
     const [cart, setCart] = useState([]);
     const [wishlist, setWishlist] = useState([]);
-    // const [whatSize, setWhatSize] = useState('M');
+    const [whatSize, setWhatSize] = useState('M');
     const location = useLocation();
 
     const showModalItemCart = () => {
@@ -177,6 +177,7 @@ export const GlobalContextProvider = (props) => {
             showAddedItemModal: [showAddModal, setShowAddModal],
             showAddedItemModalWishlist: [showAddModalWishlist, setShowAddModalWishlist],
             chooseSizeContext: [chooseSize, setChooseSize],
+            sizeContext: [whatSize, setWhatSize],
             location: location
             }}>
             {props.children}    

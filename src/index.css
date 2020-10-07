@@ -871,6 +871,7 @@ input[name=remember] {
   bottom: 0;
   padding: 1rem 0;
   background: rgba(0,0,0,.5);
+  flex-direction: column;
 }
 
 .arrival-btn {
@@ -887,7 +888,9 @@ input[name=remember] {
   cursor: pointer;
   outline: none;
   transition: 0.5s all;
+  font-size: 0.8rem;
 }
+
 
 .arrival-btn:hover {
   background: white;
@@ -1203,6 +1206,7 @@ input[name=remember] {
   flex-direction: column;
   border: 1px solid grey;
   border-radius: 5px;
+  padding: 1rem 0;
 }
 
 label {
@@ -1620,6 +1624,31 @@ label {
   position: relative;
 }
 
+.form-price {
+  width: 100%;
+  display: flex;
+  gap: 10px;
+  /* flex-direction: column; */
+}
+
+.form-price input {
+  margin-left: 5px;
+  width: 60px;
+  outline: none;
+  font-family: "Poppins", sans-serif;
+}
+
+.filter-label {
+  text-transform: uppercase;
+  font-size: 0.87rem;
+  padding-bottom: 0.2rem;
+}
+
+.filter-price-cnt {
+    margin: 0.5rem auto;
+    width: 90%;
+}
+
 /* MEDIA QUERIES */
 
 @media (min-width: 800px) {
@@ -1817,6 +1846,15 @@ label {
   .details-flex {
     justify-content: space-between;
     height: 480px;
+  }
+
+  .arrival-btns-cnt {
+    flex-direction: row;
+  }
+
+  .arrival-btn {
+    font-size: initial;
+    font-size: 0.8rem;
   }
 
 }
