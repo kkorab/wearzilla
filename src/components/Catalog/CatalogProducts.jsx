@@ -5,7 +5,7 @@ import CatalogCategories from './CatalogCategories';
 
 export default function CatalogProducts() {
     const {productsContext} = useContext(GlobalContext);
-    const [products, setProducts] = productsContext;
+    const [products] = productsContext;
     const [phrase, setPhrase] = useState("");
     const [filtered, setFiltered] = useState(products)
     const prices = products.map(product => product.price);

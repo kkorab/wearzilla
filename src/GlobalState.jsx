@@ -172,7 +172,6 @@ export const GlobalContextProvider = (props) => {
             detailsContext: [detailsProduct, setDetailsProduct],
             functionsContext: [getItem, handleDetails, addToCart, increment, decrement, removeItem, addTotals, addToWishlist, removeFromWishlist, clearCart],
             cartContext: [cart, setCart],
-            // sizeContext: [whatSize, setWhatSize],
             wishlistContext: [wishlist, setWishlist],
             showAddedItemModal: [showAddModal, setShowAddModal],
             showAddedItemModalWishlist: [showAddModalWishlist, setShowAddModalWishlist],

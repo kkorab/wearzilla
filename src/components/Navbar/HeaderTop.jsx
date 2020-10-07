@@ -21,12 +21,14 @@ export default function HeaderTop() {
     }, [isMobile]);
 
     return (
-        <header className="header-top">
-            <div className="container flex-header">
-                {isMobile ? null : <SearchBox/>}
-                <LogoBox/>
-                <IconsBox/>
-            </div>
-        </header>
+        <>
+            <header className="header-top">
+                <div className="container flex-header">
+                    {isMobile ? null : <SearchBox/>}
+                    <LogoBox/>
+                    <IconsBox/>
+                </div>
+            </header>
+        </>
     )
 }

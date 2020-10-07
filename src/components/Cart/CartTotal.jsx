@@ -1,9 +1,9 @@
-import { AnimatePresence, motion } from 'framer-motion';
-import React, { useContext, useState } from 'react'
+
+import React, { useContext} from 'react'
 import { GlobalContext } from '../../GlobalState'
 
 export default function CartTotal() {
-    const {functionsContext, cartContext} = useContext(GlobalContext);
+    const {functionsContext} = useContext(GlobalContext);
     const [, , , , , , addTotals, , , clearCart] = functionsContext;
 
     return (

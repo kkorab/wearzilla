@@ -33,13 +33,11 @@ const wishlistVariant = {
 
 
 export default function Product(props) {
-    const {functionsContext, chooseSizeContext} = useContext(GlobalContext);
-    const [, handleDetails, addToCart, , , ,, addToWishlist, removeFromWishlist, clearCart, handleSize] = functionsContext;
+    const {functionsContext} = useContext(GlobalContext);
+    const [, handleDetails, addToCart, , , ,, addToWishlist, removeFromWishlist] = functionsContext;
     let {id, url, category, name, price, priceBefore, sale, inCart, inWishlist, size} = props.data;
     let detailsName = props.data.name;
     let correctedName = detailsName.replace(/\s/g, "-").toLowerCase();
-
-    
 
     const [isSize, setIsSize] = useState(false);
 
@@ -61,7 +59,12 @@ export default function Product(props) {
                 </motion.button>
                 <motion.div variants={btnsCntVariant} initial="hidden" className="arrival-btns-cnt">
                 <button onClick={() => {
-                    setIsSize(true)
+                        if (id==="trending-4") {
+                            addToCart(id)
+                        }
+                        else {
+                            setIsSize(true)
+                        }
                     }} className="arrival-btn" disabled={inCart ? true : false}>{inCart ? "in cart" : "add to cart"}</button>
                 <Link to={`/details/${correctedName}`}>
                     <button onClick={() => handleDetails(id)} className="arrival-btn">Details</button>

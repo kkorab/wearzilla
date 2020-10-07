@@ -5,7 +5,7 @@ import Product from '../Product';
 
 export default function SaleItems() {
     const {productsContext} = useContext(GlobalContext);
-    const [products, setProducts] = productsContext;
+    const [products] = productsContext;
     const dataSale = products.filter(product => product.sale === true);
     return (
         <div className="arrivals sales">

@@ -5,7 +5,7 @@ import Product from '../Product';
 
 export default function Arrivals() {
     const {productsContext} = useContext(GlobalContext);
-    const [products, setProducts] = productsContext;
+    const [products] = productsContext;
     const dataArrivals = products.filter(product => product.arrival === true);
     return (
         <div className="arrivals">

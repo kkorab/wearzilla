@@ -25,13 +25,12 @@ const containerVariants = {
 }
 
 export default function Details() {
-    const {detailsContext, productsContext, functionsContext, cartContext, showAddedItemModal, sizeContext} = useContext(GlobalContext);
+    const {detailsContext, productsContext, functionsContext, cartContext, sizeContext} = useContext(GlobalContext);
     const [cart, setCart] = cartContext;
     const [products, setProducts] = productsContext;
     const [detailsProduct] = detailsContext;
-    const {id, category, name, info, price, priceBefore, url, arrival, sale, trending, inWishlist, inCart, quantity, total, size} = (detailsProduct || products[0]);
-    const [getItem, handleDetails, addToCart, increment, decrement, removeItem, addTotals, addToWishlist, removeFromWishlist, clearCart] = functionsContext;
-    const [showAddModal, setShowAddModal] = showAddedItemModal;
+    const {id, name, info, price, url, inWishlist, inCart} = (detailsProduct || products[0]);
+    const [getItem, , , , , , , addToWishlist, removeFromWishlist] = functionsContext;
 
     const [whatSize, setWhatSize] = sizeContext;
     // details 

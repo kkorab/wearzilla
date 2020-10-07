@@ -33,12 +33,12 @@ const modal = {
 export default function Modal() {
     const [showModal, setShowModal] = useState(false);
 
-//    useEffect(() => {
-//         setTimeout(() => {
-//             setShowModal(true);
-//             document.body.style.overflow = "hidden";
-//         }, 8000)
-//    }, [])
+   useEffect(() => {
+        setTimeout(() => {
+            setShowModal(true);
+            document.body.style.overflow = "hidden";
+        }, 8000)
+   }, [])
 
     return (
         <AnimatePresence>

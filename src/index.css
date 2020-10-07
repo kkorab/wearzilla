@@ -77,6 +77,7 @@ a {
 
 .search-box {
   align-items: center;
+  position: relative;
 }
 
 .search-btn {
@@ -91,6 +92,7 @@ a {
   display: flex;
   justify-content: center;
   align-content: center;
+  position: relative;
 }
 
 .flex-header {
@@ -697,6 +699,7 @@ input[name=remember] {
   height: 50%;
   width: 100%;
   background-size: cover;
+  background-position: center;
 }
 
 .trending-sm,
@@ -735,10 +738,14 @@ input[name=remember] {
 
 .banner-3 {
   background: url("./images/clothes/banner-3.jpg");
+  background-size: cover;
+  background-position: center;
 }
 
 .banner-4 {
   background: url("./images/clothes/banner-4.jpg");
+  background-size: cover;
+  background-position: center;
 }
 
 .trending-btns-cnt {
@@ -1199,6 +1206,7 @@ input[name=remember] {
   margin-bottom: 2rem;
   width: 100%;
   position: relative;
+  min-height: 200px;
 }
 
 .filters {
@@ -1255,6 +1263,7 @@ label {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  padding-top: 2rem;
 }
 
 .cart-space {
@@ -1434,6 +1443,10 @@ label {
 
 /* WISHLIST */
 
+.wishlist-flex {
+  padding-top: 2rem;
+}
+
 .wishlist-btns-cnt {
   display: flex;
   justify-content: space-between;
@@ -1589,7 +1602,7 @@ label {
 }
 
 .choose-size {
-  height: 4rem;
+  height: 50%;
   background: rgba(0,0,0,.9);
   display: flex;
   justify-content: center;
@@ -1631,11 +1644,16 @@ label {
   /* flex-direction: column; */
 }
 
-.form-price input {
+.price-input {
   margin-left: 5px;
   width: 60px;
   outline: none;
+  color: grey;
   font-family: "Poppins", sans-serif;
+}
+
+.price-input::placeholder {
+  color: rgba(0,0,0,.3);
 }
 
 .filter-label {
@@ -1647,6 +1665,10 @@ label {
 .filter-price-cnt {
     margin: 0.5rem auto;
     width: 90%;
+}
+
+.search-box {
+  display: none;
 }
 
 /* MEDIA QUERIES */
@@ -1856,5 +1878,89 @@ label {
     font-size: initial;
     font-size: 0.8rem;
   }
+
+  .choose-size {
+    height: 4rem;
+  }
+
+  .select-size-product {
+    cursor: pointer;
+  }
+
+  /* SEARCH */
+
+  .search-box {
+    display: flex;
+  }
+
+.search-cnt {
+  background: white;
+  width: 350px;
+  padding: 1rem;
+  border-radius: 5px;
+  box-shadow: 0 50px 100px rgba(50, 50, 93, .1), 0 15px 35px rgba(50, 50, 93, .15), 0 5px 15px rgba(0, 0, 0, .1);
+  position: absolute;
+  top: 70px;
+  z-index: 120;
+  max-height: 500px;
+  overflow-y: auto;
+}
+
+.search-cnt::before {
+  content: '';
+  width: 15px;
+  height: 15px;
+  background: white;
+  transform: rotate(45deg);
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%,-50%) rotate(45deg);
+}
+
+.item {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 5px 0;
+  border-bottom: 1px solid rgba(240,240,240,1);
+}
+
+.item:last-of-type {
+  border-bottom: none;
+}
+
+.item h2 {
+  width: 100%;
+  font-size: 0.7rem;
+  text-align: left;
+  font-weight: 400;
+  text-transform: capitalize;
+}
+
+.item h5 {
+  font-size: 0.6rem;
+}
+
+.item img {
+  width: 50px;
+  border-radius: 2px;
+}
+
+.item button {
+  font-family: "Poppins", sans-serif;
+  border: none;
+  border-radius: 5px;
+  padding: 0.2rem 5px;
+  font-size: 0.7rem;
+  cursor: pointer;
+}
+
+.type-phrase {
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+}
 
 }

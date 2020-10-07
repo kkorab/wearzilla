@@ -2,7 +2,6 @@ import React, { useContext } from 'react'
 import { Link } from 'react-router-dom'
 import {GlobalContext} from '../../GlobalState'; 
 import SearchBox from './SearchBox';
-
 import cartSvg from '../../images/svg/bag.svg'
 import heartSvg from '../../images/svg/heart.svg'
 import userSvg from '../../images/svg/user.svg'
@@ -10,11 +9,12 @@ import userSvg from '../../images/svg/user.svg'
 
 export default function IconsBox() {
     const isLogged = false;
-    const {mobileContext, functionsContext,cartContext, wishlistContext, location} = useContext(GlobalContext);
+    const {mobileContext, functionsContext,cartContext, wishlistContext, location, modalContext} = useContext(GlobalContext);
     const [cart] = cartContext;
     const [wishlist] = wishlistContext;
     const [isMobileSize] = mobileContext;
     const [, , , , , , addTotals, ,] = functionsContext;
+    const [, setShowLoginModal] = modalContext;
 
 
     return (
@@ -37,7 +37,7 @@ export default function IconsBox() {
                     }
                 </div>
             </Link>
-            <div className="sign-in">
+            <div className="sign-in" onClick={() => {setShowLoginModal(true)}}>
                 <img className="svg-icon" src={userSvg} alt="svg icon"/>
                 <h6>{isLogged ? "Log Out" : "Log In"}</h6>
             </div>
