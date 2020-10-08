@@ -12,10 +12,21 @@ export const GlobalContextProvider = (props) => {
     const [isMobileSize, setIsMobileSize] = useState(false);
     const [showLoginModal, setShowLoginModal] = useState(false);
     const [detailsProduct, setDetailsProduct] = useState(null);
-    const [cart, setCart] = useState([]);
-    const [wishlist, setWishlist] = useState([]);
+    const [cart, setCart] = useState(JSON.parse(localStorage.getItem('cart')) || []);
+    const [wishlist, setWishlist] = useState(JSON.parse(localStorage.getItem('wishlist')) || []);
     const [whatSize, setWhatSize] = useState('M');
     const location = useLocation();
+
+    useEffect(() => {
+        localStorage.setItem('wishlist',JSON.stringify(wishlist))
+        return localStorage.setItem('wishlist', JSON.stringify(wishlist))
+    }, [wishlist])    
+
+
+    useEffect(() => {
+        localStorage.setItem('cart',JSON.stringify(cart))
+        return localStorage.setItem('cart', JSON.stringify(cart))
+    }, [cart])    
 
     const showModalItemCart = () => {
         setShowAddModal(true);
