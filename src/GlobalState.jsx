@@ -5,10 +5,11 @@ import {items} from './Data';
 export const GlobalContext = createContext();
 
 export const GlobalContextProvider = (props) => {
+    const [itemsCopy, setItemsCopy] = useState([]);
     const [showAddModal, setShowAddModal] = useState(false);
     const [chooseSize, setChooseSize] = useState(false);
     const [showAddModalWishlist, setShowAddModalWishlist] = useState(false);
-    const [products, setProducts] = useState(items);
+    const [products, setProducts] = useState(JSON.parse(localStorage.getItem('products')) || itemsCopy);
     const [isMobileSize, setIsMobileSize] = useState(false);
     const [showLoginModal, setShowLoginModal] = useState(false);
     const [detailsProduct, setDetailsProduct] = useState(null);
@@ -36,6 +37,17 @@ export const GlobalContextProvider = (props) => {
         setShowAddModalWishlist(true);
         setTimeout(() => setShowAddModalWishlist(false), 3000)
     }
+
+    const copyDataItems = () => {
+        let tempProducts = [];
+        items.forEach(item => {
+            const singleItem = {...item};
+            tempProducts = [...tempProducts, singleItem];
+        })
+        setItemsCopy(tempProducts);
+    }
+
+    
 
     const copyDataProducts = () => {
         let tempProducts = [];
@@ -156,8 +168,12 @@ export const GlobalContextProvider = (props) => {
         return total.toFixed(2);
     }
 
+    // useEffect( () => {
+    //     copyDataProducts();
+    // },[])
+
     useEffect( () => {
-        copyDataProducts();
+        copyDataItems();
     },[])
 
     useEffect(() => {
