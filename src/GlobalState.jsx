@@ -4,12 +4,13 @@ import {items} from './Data';
 
 export const GlobalContext = createContext();
 
+
 export const GlobalContextProvider = (props) => {
     const [itemsCopy, setItemsCopy] = useState([]);
     const [showAddModal, setShowAddModal] = useState(false);
     const [chooseSize, setChooseSize] = useState(false);
     const [showAddModalWishlist, setShowAddModalWishlist] = useState(false);
-    const [products, setProducts] = useState(JSON.parse(localStorage.getItem('products')) || itemsCopy);
+    const [products, setProducts] = useState(JSON.parse(localStorage.getItem('products')) || items);
     const [isMobileSize, setIsMobileSize] = useState(false);
     const [showLoginModal, setShowLoginModal] = useState(false);
     const [detailsProduct, setDetailsProduct] = useState(null);
@@ -45,9 +46,8 @@ export const GlobalContextProvider = (props) => {
             tempProducts = [...tempProducts, singleItem];
         })
         setItemsCopy(tempProducts);
-    }
 
-    
+    }
 
     const copyDataProducts = () => {
         let tempProducts = [];
@@ -172,10 +172,7 @@ export const GlobalContextProvider = (props) => {
     //     copyDataProducts();
     // },[])
 
-    useEffect( () => {
-        copyDataItems();
-    },[])
-
+    
     useEffect(() => {
         const handleWindowSize = () => {
             if (window.innerWidth < 800) {
