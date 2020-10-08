@@ -124,7 +124,7 @@ export default function Details() {
                         onClick={inCart ? null : (id) => addToCartDetailsItem(id)} 
                         className="details-btn">
                             {inCart ? null : <i className="fas fa-cart-plus"></i>}
-                            <span className="to-hide">{inCart ? "In cart" : "Add to cart"}</span>
+                            <span>{inCart ? "In cart" : "Add to cart"}</span>
                         </button>
                         <button className="details-btn"
                         onClick={inWishlist ? () => removeFromWishlist(id) : 

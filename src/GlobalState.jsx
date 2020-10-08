@@ -4,13 +4,12 @@ import {items} from './Data';
 
 export const GlobalContext = createContext();
 
-
 export const GlobalContextProvider = (props) => {
-    const [itemsCopy, setItemsCopy] = useState([]);
+    const copiedItems = copyItems(items);
     const [showAddModal, setShowAddModal] = useState(false);
     const [chooseSize, setChooseSize] = useState(false);
     const [showAddModalWishlist, setShowAddModalWishlist] = useState(false);
-    const [products, setProducts] = useState(JSON.parse(localStorage.getItem('products')) || items);
+    const [products, setProducts] = useState(JSON.parse(localStorage.getItem('products')) || copiedItems);
     const [isMobileSize, setIsMobileSize] = useState(false);
     const [showLoginModal, setShowLoginModal] = useState(false);
     const [detailsProduct, setDetailsProduct] = useState(null);
@@ -19,15 +18,14 @@ export const GlobalContextProvider = (props) => {
     const [whatSize, setWhatSize] = useState('M');
     const location = useLocation();
 
-    useEffect(() => {
-        localStorage.setItem('wishlist',JSON.stringify(wishlist))
-        return localStorage.setItem('wishlist', JSON.stringify(wishlist))
-    }, [wishlist])    
-
-    useEffect(() => {
-        localStorage.setItem('cart',JSON.stringify(cart))
-        return localStorage.setItem('cart', JSON.stringify(cart))
-    }, [cart])    
+    function copyItems(arr) {
+        let tempProducts = [];
+        arr.forEach(item => {
+            const singleItem = {...item};
+            tempProducts = [...tempProducts, singleItem];
+        })
+        return tempProducts;
+    } 
 
     const showModalItemCart = () => {
         setShowAddModal(true);
@@ -39,20 +37,15 @@ export const GlobalContextProvider = (props) => {
         setTimeout(() => setShowAddModalWishlist(false), 3000)
     }
 
-    const copyDataItems = () => {
-        let tempProducts = [];
-        items.forEach(item => {
-            const singleItem = {...item};
-            tempProducts = [...tempProducts, singleItem];
-        })
-        setItemsCopy(tempProducts);
-
-    }
-
     const copyDataProducts = () => {
         let tempProducts = [];
         items.forEach(item => {
             const singleItem = {...item};
+            wishlist.forEach(wish => {
+                if (wish.id === singleItem.id) {
+                    singleItem.inWishlist = true;
+                }
+            })
             tempProducts = [...tempProducts, singleItem];
         })
         setProducts(tempProducts);
@@ -78,7 +71,6 @@ export const GlobalContextProvider = (props) => {
         item.total = price;
         item.size = size;
 
-        
         setCart([...cart, item])
         setProducts(tempProducts);
         showModalItemCart();
@@ -168,10 +160,20 @@ export const GlobalContextProvider = (props) => {
         return total.toFixed(2);
     }
 
-    // useEffect( () => {
-    //     copyDataProducts();
-    // },[])
 
+    useEffect(() => {
+        localStorage.setItem('products', JSON.stringify(products));
+    }, [products])
+
+    useEffect(() => {
+        localStorage.setItem('cart', JSON.stringify(cart));
+    }, [cart])
+
+    useEffect(() => {
+        localStorage.setItem('wishlist', JSON.stringify(wishlist));
+    }, [wishlist])
+
+   
     
     useEffect(() => {
         const handleWindowSize = () => {
@@ -187,10 +189,6 @@ export const GlobalContextProvider = (props) => {
         return () => window.removeEventListener('resize', handleWindowSize);
     }, [isMobileSize])
 
-    useEffect(() => {
-        localStorage.setItem('products', JSON.stringify(products));
-        return localStorage.setItem('products', JSON.stringify(products))
-    }, [products])    
 
 
     return (
