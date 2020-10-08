@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import Home from './pages/Home';
 import {Switch, Route, useLocation} from 'react-router-dom';
 import Header from './components/Navbar/Header';
@@ -16,17 +16,30 @@ import { AnimatePresence } from 'framer-motion';
 import AddCartModal from './components/AddCartModal';
 import AddWishlistModal from './components/AddWishlistModal';
 import MobileMenu from './components/Navbar/MobileMenu';
+import Loader from './pages/Loader';
 
 function App() {
   const location = useLocation();
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     setTimeout(()=>window.scrollTo(0,0),400);
   }, [location.pathname])
 
+  useEffect(() => {
+    window.addEventListener('load', () => {
+      setLoading(false)
+    })
+    return window.removeEventListener('load', () => {
+      setLoading(false)
+    })
+  })
+  
+
   return (
     <>
       <GlobalContextProvider>
+        {loading ? <Loader/> : null}
         <Modal/>
         <LoginModal/>
         <MobileMenu/>
