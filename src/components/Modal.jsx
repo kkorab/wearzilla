@@ -33,11 +33,15 @@ const modal = {
 export default function Modal() {
     const [showModal, setShowModal] = useState(false);
 
-   useEffect(() => {
+    function modalFunction() {
         setTimeout(() => {
             setShowModal(true);
             document.body.style.overflow = "hidden";
         }, 8000)
+    }
+
+   useEffect(() => {
+        modalFunction();
    }, [])
 
     return (
@@ -61,7 +65,7 @@ export default function Modal() {
                         Subscribe to the WearZilla newsletter to receive timely updates from your favorite products.
                     </p>
                     <form className="modal-form">
-                        <input className="modal-input" type="email" placeholder="Your Email Address"/>
+                        <input className="modal-input" type="email" placeholder="Your email"/>
                         <button className="modal-btn" type="submit">GO</button>
                     </form>
                 </div>

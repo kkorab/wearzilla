@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion'
-import React, { useContext, useState} from 'react'
+import React, { useContext, useEffect, useState} from 'react'
 import { Link } from 'react-router-dom'
 import { GlobalContext } from '../GlobalState'
 
@@ -39,6 +39,29 @@ export default function Product(props) {
     let detailsName = props.data.name;
     let correctedName = detailsName.replace(/\s/g, "-").toLowerCase();
 
+    const [isMobileSize, setIsMobileSize] = useState(false)
+
+    function checkSize() {
+        if (window.innerWidth < 800) {
+            setIsMobileSize(true);
+        }
+        else {
+            setIsMobileSize(false)
+        }
+    }
+
+    useEffect(() => {
+        checkSize()
+    },[])
+
+    useEffect(() => {
+        window.addEventListener('resize', checkSize)
+        return () => {
+            window.removeEventListener('resize', checkSize)
+        }
+    }, [isMobileSize])
+    
+
     const [isSize, setIsSize] = useState(false);
 
     function getSize(e) {
@@ -51,13 +74,13 @@ export default function Product(props) {
     return (
         <>
         <div className="arrival-item">
-            <motion.div whileHover='hover' initial={frontVariant} className="arrival-front" style={{backgroundImage: `url(${url})`}}>
+            <motion.div variants={frontVariant} whileHover='hover' animate={isMobileSize ? 'hover' : null} className="arrival-front" style={{backgroundImage: `url(${url})`}}>
                 <motion.button variants={wishlistVariant} initial="hidden"
                 onClick={inWishlist ? () => removeFromWishlist(id) : () => addToWishlist(id)}
                 className="trending-wishlist-btn">
                     <i style={inWishlist ? {color: '#FF9985'} : null} className="far fa-heart"></i>
                 </motion.button>
-                <motion.div variants={btnsCntVariant} initial="hidden" className="arrival-btns-cnt">
+                <motion.div variants={btnsCntVariant} initial='hidden' className="arrival-btns-cnt">
                 <button onClick={() => {
                         if (id==="trending-4") {
                             addToCart(id)
@@ -65,9 +88,9 @@ export default function Product(props) {
                         else {
                             setIsSize(true)
                         }
-                    }} className="arrival-btn" disabled={inCart ? true : false}>{inCart ? "in cart" : "add to cart"}</button>
+                    }} className="arrival-btn" disabled={inCart ? true : false}>{inCart ? (isMobileSize ? <i class="fas fa-check"></i> : "in cart") : (isMobileSize ? <i className="fas fa-plus"></i> : "add to cart")}</button>
                 <Link to={`/details/${correctedName}`}>
-                    <button onClick={() => handleDetails(id)} className="arrival-btn">Details</button>
+                <button onClick={() => handleDetails(id)} className="arrival-btn">{isMobileSize ? <i className="fas fa-info"></i> : "Details"}</button>
                 </Link>     
                 </motion.div>
                 {isSize ? 
@@ -85,10 +108,15 @@ export default function Product(props) {
                 : null}
             </motion.div>
             <div className="arrival-item-desc">
-                <h4 className="arrival-item__category">{category}</h4>
-                <h3 className="arrival-item__headline">{name}</h3>
-                <h5 className="arrival-item__price">${price}</h5>
-                {sale ? (<h5 className="arrival-item__price price-before">${priceBefore}</h5>) : null}
+                <div className="desc-top">
+                    <h4 className="arrival-item__category">{category}</h4>
+                    <h3 className="arrival-item__headline">{name}</h3>
+
+                </div>
+                <div className="desc-bottom">
+                    <h5 className="arrival-item__price">${price}</h5>
+                    {sale ? (<h5 className="arrival-item__price price-before">${priceBefore}</h5>) : null}
+                </div>
             </div>
         </div>
         </>

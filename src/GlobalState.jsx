@@ -22,7 +22,6 @@ export const GlobalContextProvider = (props) => {
         return localStorage.setItem('wishlist', JSON.stringify(wishlist))
     }, [wishlist])    
 
-
     useEffect(() => {
         localStorage.setItem('cart',JSON.stringify(cart))
         return localStorage.setItem('cart', JSON.stringify(cart))
@@ -174,6 +173,12 @@ export const GlobalContextProvider = (props) => {
         handleWindowSize();
         return () => window.removeEventListener('resize', handleWindowSize);
     }, [isMobileSize])
+
+    useEffect(() => {
+        localStorage.setItem('products', JSON.stringify(products));
+        return localStorage.setItem('products', JSON.stringify(products))
+    }, [products])    
+
 
     return (
         <GlobalContext.Provider value={{

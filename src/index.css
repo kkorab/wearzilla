@@ -127,9 +127,10 @@ a {
 
 .icons-box {
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
   align-items: flex-start;
-  gap: 22px;
+  /* gap: 22px; */
+  width: 100px;
   position: absolute;
   top: 20px;
   left: 10px;
@@ -337,11 +338,12 @@ a {
 }
 
 .intro-cnt {
-  height: 250px;
+  height: 270px;
   width: 100%;
+  padding: 2rem 0;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-around;
   gap: 10px;
   align-items: center;
   position: relative;
@@ -422,7 +424,8 @@ a {
 }
 
 .intro-headline {
-  font-size: 2rem;
+  width: 95%;
+  font-size: 1.8rem;
   text-transform: uppercase;
   letter-spacing: 1rem;
   color: white;
@@ -430,7 +433,7 @@ a {
 }
 
 .intro-btn {
-  padding: 0.5rem 2rem;
+  padding: 0.5rem 1rem;
   background: none;
   border: 1px solid var(--main-color-white);
   color: white;
@@ -474,7 +477,8 @@ a {
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
-  padding: 20px 20px;
+  /* padding: 20px 20px; */
+  padding: 10px 10px;
   flex: 5;
 }
 
@@ -520,8 +524,8 @@ a {
 
 .modal__content p {
   color: gray;
-  font-size: 0.875rem;
-  padding: 1rem 0;
+  font-size: 0.7rem;
+  padding-bottom: 1rem;
 }
 
 .modal-alert {
@@ -552,7 +556,8 @@ a {
 
 .modal-btn {
   font-family: "Poppins", sans-serif;
-  padding: 5px 25px;
+  /* padding: 5px 25px; */
+  padding: 5px 15px;
   height: 100%;
   color: white;
   background: black;
@@ -620,11 +625,12 @@ a {
 }
 
 .modal__signin-inputs {
+  width: 100%;
   margin-top: 1rem;
   display: flex;
-  justify-content: flex-start;
+  justify-content: space-between;
   align-items: center;
-  gap: 2rem;
+
 }
 
 input[name=remember] {
@@ -650,7 +656,6 @@ input[name=remember] {
   justify-content: space-between;
   width: 100%;
   margin: 2rem 0;
-  gap: 20px;
 }
 
 .col-cnt {
@@ -659,7 +664,7 @@ input[name=remember] {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 20px;
+  padding-bottom: 20px;
 }
 
 .trending-l {
@@ -680,23 +685,22 @@ input[name=remember] {
   width: 100%;
   background: url("./images/clothes/banner-2.jpg");
   background-size: cover;
-  
 }
 
 .sm-cnt {
+  padding-left: 10px;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   width: 100%;
   height: 100%;
-  gap: 20px;
 }
 
 .trending-sm {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 5%;
-  height: 50%;
+  height: 49%;
   width: 100%;
   background-size: cover;
   background-position: center;
@@ -720,15 +724,9 @@ input[name=remember] {
   cursor: pointer;
 }
 
-.trending-info {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
 .trending-title,
 .trending-price {
+  font-size: 1.2rem;
   color: white;
   text-transform: uppercase;
   letter-spacing: 2px;
@@ -749,21 +747,22 @@ input[name=remember] {
 }
 
 .trending-btns-cnt {
-  margin-top: 1rem;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
+  justify-content: space-evenly;
   align-items: center;
-  gap: 10px;
+  width: 130px;
+  margin: 0 auto;
+  margin-top: 1rem;
 }
 
 .trending-btn {
-  padding: 0.2rem 1rem;
   background: none;
   border: none;
   font-weight: 400;
   border: 1px solid white;
   border-radius: 10px;
+  width: 40px;
+  height: 30px;
   color: white;
   text-transform: uppercase;
   font-family: "Poppins", sans-serif;
@@ -784,7 +783,6 @@ input[name=remember] {
 /* BAR */
 
 .bar {
-  /* height: 200px; */
   background: rgba(29,29,29);
   padding: 2rem 0;
 }
@@ -800,12 +798,12 @@ input[name=remember] {
 
 .bar-item {
   padding: 1rem;
-  height: 60%;
+  height: 160px;
   flex: 1;
   display: flex;
-  gap: 10px;
+  /* gap: 10px; */
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
   color: white;
 }
@@ -848,7 +846,7 @@ input[name=remember] {
   flex-direction: column;
   width: 100%;
   object-fit: cover;
-  justify-content: space-between;
+  justify-content: baseline;
 }
 
 .arrival-front {
@@ -869,6 +867,38 @@ input[name=remember] {
 }
 
 .arrival-btns-cnt {
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  position: absolute;
+  bottom: 0;
+  padding: 0.5rem 2rem;
+  background: rgba(0,0,0,.5);
+}
+
+.arrival-btn {
+  width: 30px;
+  height: 30px;
+  background: none;
+  border: none;
+  font-weight: 400;
+  border: 1px solid white;
+  border-radius: 50%;
+  color: white;
+  text-transform: uppercase;
+  font-family: "Poppins", sans-serif;
+  letter-spacing: 1px;
+  cursor: pointer;
+  outline: none;
+  transition: 0.5s all;
+  font-size: 0.8rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* .arrival-btns-cnt {
   width: 100%;
   display: flex;
   justify-content: center;
@@ -896,7 +926,8 @@ input[name=remember] {
   outline: none;
   transition: 0.5s all;
   font-size: 0.8rem;
-}
+} */
+
 
 
 .arrival-btn:hover {
@@ -907,7 +938,7 @@ input[name=remember] {
 .arrival-item__headline {
   text-transform: uppercase;
   color: gray;
-  font-size: 1rem;
+  font-size: 0.875rem;
   letter-spacing: 2px;
   font-weight: 400;
 }
@@ -1190,11 +1221,16 @@ input[name=remember] {
 .catalog-cnt {
   display: flex;
   flex-direction: column;
-  gap: 20px;
 }
 
 .catalog-filters {
   width: 100%;
+  padding-bottom: 20px;
+}
+
+.catalog-headline {
+  transform: translateY(-40px);
+  text-shadow: 0px 0px 4px rgba(0, 0, 0, 0.26);
 }
 
 .catalog-items{
@@ -1283,6 +1319,7 @@ label {
   font-weight: 400;
   text-transform: uppercase;
   letter-spacing: 5px;
+  text-align: center;
 }
 
 /* CARDDD */
@@ -1586,9 +1623,8 @@ label {
   justify-content: space-between;
   margin: 0rem auto;
   list-style: none;
-  gap: 40px;
   width: 90%;
-  /* background: gold; */
+  height: 180px;
 }
 
 .mobile-menu-item {
@@ -1602,7 +1638,7 @@ label {
 }
 
 .choose-size {
-  height: 50%;
+  height: 30%;
   background: rgba(0,0,0,.9);
   display: flex;
   justify-content: center;
@@ -1690,6 +1726,7 @@ label {
   .icons-box,
   .search-box {
     width: 33.33%;
+    max-width: 250px;
   }
 
   .logo-box {
@@ -1727,6 +1764,10 @@ label {
   }
 
   .sale-headline {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     font-size: 5rem;
     letter-spacing: 2rem;
     color: gold;
@@ -1738,6 +1779,10 @@ label {
 
   .flex-row {
     flex-direction: row;
+  }
+
+  .col-cnt {
+    width: 49.5%;
   }
 
   .trending-btns-cnt {
@@ -1764,6 +1809,7 @@ label {
 
   .catalog-cnt {
     flex-direction: row;
+    width: 100%;
   }
 
   .catalog-filters {
@@ -1773,6 +1819,7 @@ label {
   .catalog-items {
     grid-template-columns: repeat(auto-fit, 270px);
     justify-content: flex-start;
+    padding-left: 1rem;
     width: 75%
   }
 
@@ -1871,12 +1918,16 @@ label {
   }
 
   .arrival-btns-cnt {
-    flex-direction: row;
+    padding: 1rem 0;
   }
 
   .arrival-btn {
-    font-size: initial;
+    width: initial;
+    height: initial;
+    border-radius: initial;
     font-size: 0.8rem;
+    padding: 0.2rem 1rem;
+    border-radius: 10px;
   }
 
   .choose-size {
@@ -1961,6 +2012,41 @@ label {
   text-align: center;
   text-transform: uppercase;
   letter-spacing: 3px;
+}
+
+.intro-btn {
+  padding: 0.5rem 2rem;
+}
+
+.arrival-item__headline {
+  font-size: 1rem;
+}
+
+.trending-title {
+  font-size: 1.7rem;
+  letter-spacing: 3px;
+}
+
+.trending-info {
+  width: 100%;
+}
+
+.trending-btns-cnt {
+  margin-top: 1rem;
+  width: 100%;
+  justify-content: center
+}
+
+.trending-btn {
+  margin: 0 10px;
+  padding: 0.2rem 0.5rem;
+  width: initial;
+  height: initial;
+}
+
+.bar-item {
+  padding: 1rem;
+  height: 130px;
 }
 
 }

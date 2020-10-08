@@ -18,6 +18,7 @@ export default function HeaderTop() {
     useEffect(() => {
         handleSize();
         window.addEventListener('resize', handleSize)
+        return window.removeEventListener('resize', handleSize)
     }, [isMobile]);
 
     return (

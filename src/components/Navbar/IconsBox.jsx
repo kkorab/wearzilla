@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import {GlobalContext} from '../../GlobalState'; 
 import SearchBox from './SearchBox';
@@ -9,13 +9,36 @@ import userSvg from '../../images/svg/user.svg'
 
 export default function IconsBox() {
     const isLogged = false;
-    const {mobileContext, functionsContext,cartContext, wishlistContext, location, modalContext} = useContext(GlobalContext);
+    const {functionsContext,cartContext, wishlistContext, location, modalContext} = useContext(GlobalContext);
     const [cart] = cartContext;
     const [wishlist] = wishlistContext;
-    const [isMobileSize] = mobileContext;
     const [, , , , , , addTotals, ,] = functionsContext;
     const [, setShowLoginModal] = modalContext;
 
+    const [isMobileSize, setIsMobileSize] = useState(false)
+
+    function checkSize() {
+        if (window.innerWidth < 800) {
+            setIsMobileSize(true);
+        }
+        else {
+            setIsMobileSize(false)
+        }
+    }
+
+    useEffect(() => {
+        checkSize()
+    },[])
+
+    useEffect(() => {
+        window.addEventListener('resize', checkSize)
+        return () => {
+            window.removeEventListener('resize', checkSize)
+        }
+    }, [isMobileSize])
+    
+
+    
 
     return (
         <div className="icons-box">

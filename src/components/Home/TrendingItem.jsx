@@ -1,6 +1,6 @@
 import { GlobalContext } from '../../GlobalState'
 import { motion } from 'framer-motion'
-import React, { useContext, useState} from 'react'
+import React, { useContext, useEffect, useState} from 'react'
 import { Link } from 'react-router-dom'
 
 const cntVariant = {
@@ -49,9 +49,31 @@ export default function TrendingItem(props) {
         addToCart(id, size)
     }
 
+    const [isMobileSize, setIsMobileSize] = useState(false)
+
+    function checkSize() {
+        if (window.innerWidth < 800) {
+            setIsMobileSize(true);
+        }
+        else {
+            setIsMobileSize(false)
+        }
+    }
+
+    useEffect(() => {
+        checkSize()
+    },[])
+
+    useEffect(() => {
+        window.addEventListener('resize', checkSize)
+        return () => {
+            window.removeEventListener('resize', checkSize)
+        }
+    }, [isMobileSize])
+
     return (
-        <motion.div variants={trendingVariant} whileHover="hover" initial="hidden" className={cName} style={{backgroundImage: url}}>
-            <div className="tredning-info" >
+        <motion.div variants={trendingVariant} whileHover="hover" animate={isMobileSize ? 'hover' : null} initial="hidden" className={cName} style={{backgroundImage: url}}>
+            <div className="trending-info" >
                 <h1 className="trending-title">{name}</h1>
                 <h4 className="trending-price">${price}</h4>
                 <motion.button variants={btnVariant} onClick={inWishlist ? () => removeFromWishlist(id) : () => addToWishlist(id)} className="trending-wishlist-btn">
@@ -65,11 +87,11 @@ export default function TrendingItem(props) {
                         else {
                             setIsSize(true)
                         }}} 
-                        className="trending-btn" disabled={inCart ? true : false}>{inCart ? "in cart" : "add to cart"}</button>
+                        className="trending-btn" disabled={inCart ? true : false}>{inCart ? (isMobileSize ? <i class="fas fa-check"></i> : "in cart") : (isMobileSize ? <i className="fas fa-plus"></i> : "add to cart")}</button>
                     <Link to={`/details/${correctedName}`}>
                         <button 
                         onClick={() => handleDetails(id)}
-                        className="trending-btn">Details</button>
+                        className="trending-btn">{isMobileSize ? <i className="fas fa-info"></i> : "Details"}</button>
                     </Link>
                 </motion.div>)}
             </div>
